@@ -34,6 +34,7 @@ class BackgroundContainer extends StatelessWidget {
             Image.asset(
               'assets/images/quiz-logo.png',
               width: 300,
+              color: const Color.fromARGB(130, 225, 190, 231),
             ),
             const SizedBox(height: 50),
             Text('Learn Flutter the fun way!',
