@@ -10,21 +10,22 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-
   // conditionally rendering the start screen or the questions screen
-  Widget? activeScreen;   // The ? is used to make the variable nullable --> it can be null
+  // Widget? activeScreen;   // The ? is used to make the variable nullable --> it can be null
 
   // This is the way to initialize StartScreen with the switchScreen function from the parent
   // otherweise, we will get an error because the instance of the StartScreen is not initialized with the function at the time of the build
-  @override
-  void initState() {
-    super.initState();
-    activeScreen = StartScreen(switchScreen);
-    }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   activeScreen = StartScreen(switchScreen);
+  //   }
+
+  var activeScreen = 'start-screen'; 
 
   void switchScreen() {
     setState(
-      () => activeScreen = const QuestionsScreen(),
+      () => activeScreen = 'questions-screen',
     );
   }
 
@@ -43,7 +44,9 @@ class _QuizState extends State<Quiz> {
               ],
             ),
           ),
-          child: activeScreen,
+          child: activeScreen == 'start-screen'
+              ? StartScreen(switchScreen)
+              : const QuestionsScreen(),
         ),
       ),
     );
