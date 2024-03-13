@@ -34,7 +34,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
-            ...currentQuestion.answers.map((answer) {
+            ...currentQuestion.getShuffledAnswers().map((answer) {
+              // We use the list of shuffled answers found in the class instance in models/quiz_questions.dart
               // <-- This is the list of answers and uses the spread operator and map to iterate through the list
               return AnswerButton(answerText: answer, onTap: () {});
             })
