@@ -18,20 +18,28 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            currentQuestion
-                .question, // <-- This is the text of the first question
-            style: TextStyle(fontSize: 16, color: Colors.purple[100]),
-          ),
-          const SizedBox(height: 40),
-          ...currentQuestion.answers.map((answer) {
-            // <-- This is the list of answers and uses the spread operator and map to iterate through the list
-            return AnswerButton(answerText: answer, onTap: () {});
-          })
-        ],
+      child: Container(
+        padding: const EdgeInsets.all(40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              currentQuestion
+                  .question, // <-- This is the text of the first question
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.purple[100],
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 40),
+            ...currentQuestion.answers.map((answer) {
+              // <-- This is the list of answers and uses the spread operator and map to iterate through the list
+              return AnswerButton(answerText: answer, onTap: () {});
+            })
+          ],
+        ),
       ),
     );
   }
