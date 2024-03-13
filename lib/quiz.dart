@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/questions_screen.dart';
 import 'package:quiz_app/start_screen.dart';
 
@@ -10,18 +11,11 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  // Creating a variable to keep track of selected answers during the quiz
+  final List<String> selectedAnswers = [];
+
   // conditionally rendering the start screen or the questions screen
-  // Widget? activeScreen;   // The ? is used to make the variable nullable --> it can be null
-
-  // This is the way to initialize StartScreen with the switchScreen function from the parent
-  // otherweise, we will get an error because the instance of the StartScreen is not initialized with the function at the time of the build
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   activeScreen = StartScreen(switchScreen);
-  //   }
-
-  var activeScreen = 'start-screen'; 
+  var activeScreen = 'start-screen';
 
   void switchScreen() {
     setState(
@@ -29,8 +23,30 @@ class _QuizState extends State<Quiz> {
     );
   }
 
+  // Adding a method to add the selected answer to the list
+  void addSelectedAnswer(String answer) {
+    selectedAnswers
+        .add(answer); // <-- Add the selected answer to the list/array
+
+    if (selectedAnswers.length == questions.length) {// make sure we don't go above the number of questions and break the app
+      setState(() { 
+        selectedAnswers.clear(); // or selectedAnswers = []; but removed `final` from the variable declaration above
+        activeScreen = 'start-screen';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    Widget screenWidget = StartScreen(switchScreen); //
+
+    if (activeScreen == 'questions-screen') {
+      screenWidget = QuestionsScreen(
+        onSelectedAnswer:
+            addSelectedAnswer, // <-- Because it is a named parameter we must pass the function with the name we defined in the child widget (QuestionsScreen)
+      );
+    }
+
     return MaterialApp(
       home: Scaffold(
         body: Container(
@@ -44,9 +60,7 @@ class _QuizState extends State<Quiz> {
               ],
             ),
           ),
-          child: activeScreen == 'start-screen'
-              ? StartScreen(switchScreen)
-              : const QuestionsScreen(),
+          child: screenWidget,
         ),
       ),
     );

@@ -3,10 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 class StartScreen extends StatelessWidget {
   // this accepts the function from the parent `quiz.dart`
-  const StartScreen(this.startQuiz, {super.key});
+  const StartScreen(this.switchScreen, {super.key});
 
   // Then sets the function to a final variable
-  final void Function() startQuiz;
+  final void Function() switchScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class StartScreen extends StatelessWidget {
           const SizedBox(height: 50),
           OutlinedButton.icon(
               onPressed:
-                  startQuiz, // Got access to the function from the parent `quiz.dart`
+                  switchScreen, // Got access to the function from the parent `quiz.dart`
               icon: Icon(Icons.arrow_right_alt_outlined,
                   color: Colors.purple[100]),
               label: Text('Start Quiz',
