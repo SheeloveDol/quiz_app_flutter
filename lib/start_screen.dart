@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StartScreen extends StatelessWidget {
-
   // this accepts the function from the parent `quiz.dart`
   const StartScreen(this.startQuiz, {super.key});
 
@@ -31,11 +31,17 @@ class StartScreen extends StatelessWidget {
             color: const Color.fromARGB(130, 225, 190, 231),
           ),
           const SizedBox(height: 50),
-          Text('Learn Flutter the fun way!',
-              style: TextStyle(fontSize: 20, color: Colors.purple[100])),
+          Text(
+            'Learn Flutter the fun way!',
+            style: GoogleFonts.montserrat(
+              fontSize: 20,
+              color: Colors.purple[100],
+            ),
+          ),
           const SizedBox(height: 50),
           OutlinedButton.icon(
-              onPressed: startQuiz, // Got access to the function from the parent `quiz.dart`
+              onPressed:
+                  startQuiz, // Got access to the function from the parent `quiz.dart`
               icon: Icon(Icons.arrow_right_alt_outlined,
                   color: Colors.purple[100]),
               label: Text('Start Quiz',
