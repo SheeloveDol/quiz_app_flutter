@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/questions_screen.dart';
+import 'package:quiz_app/results_screen.dart';
 import 'package:quiz_app/start_screen.dart';
 
 class Quiz extends StatefulWidget {
@@ -28,10 +29,12 @@ class _QuizState extends State<Quiz> {
     selectedAnswers
         .add(answer); // <-- Add the selected answer to the list/array
 
-    if (selectedAnswers.length == questions.length) {// make sure we don't go above the number of questions and break the app
-      setState(() { 
-        selectedAnswers.clear(); // or selectedAnswers = []; but removed `final` from the variable declaration above
-        activeScreen = 'start-screen';
+    if (selectedAnswers.length == questions.length) {
+      // make sure we don't go above the number of questions and break the app
+      setState(() {
+        selectedAnswers
+            .clear(); // or selectedAnswers = []; but removed `final` from the variable declaration above
+        activeScreen = 'results-screen';
       });
     }
   }
@@ -40,11 +43,17 @@ class _QuizState extends State<Quiz> {
   Widget build(BuildContext context) {
     Widget screenWidget = StartScreen(switchScreen); //
 
+    // conditionally rendering the questions screen
     if (activeScreen == 'questions-screen') {
       screenWidget = QuestionsScreen(
         onSelectedAnswer:
             addSelectedAnswer, // <-- Because it is a named parameter we must pass the function with the name we defined in the child widget (QuestionsScreen)
       );
+    }
+
+      // conditionally rendering the results screen
+    if (activeScreen == 'results-screen') {
+      screenWidget = const ResultsScreen();
     }
 
     return MaterialApp(
