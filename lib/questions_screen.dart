@@ -10,11 +10,23 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  // Implementation of going onto the next question when we tap on an answer button
+
+  // Making a variable to keep track of the current question's index
+  var currentQuestionIndex = 0;
+
+  // Next, we created a function to handle the tap event and update the state of the current question index
+  void answerQuestion() {
+    setState(() {
+      currentQuestionIndex++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // to iterate through the list of answers we first declare a variable to hold the class instance
-    final currentQuestion =
-        questions[0]; // <-- This is the first question in the list
+    final currentQuestion = questions[
+        currentQuestionIndex]; // <-- This is the first question in the list
 
     return SizedBox(
       width: double.infinity,
@@ -37,7 +49,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             ...currentQuestion.getShuffledAnswers().map((answer) {
               // We use the list of shuffled answers found in the class instance in models/quiz_questions.dart
               // <-- This is the list of answers and uses the spread operator and map to iterate through the list
-              return AnswerButton(answerText: answer, onTap: () {});
+              return AnswerButton(answerText: answer, onTap: answerQuestion);
             })
           ],
         ),
