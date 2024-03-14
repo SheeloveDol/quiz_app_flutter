@@ -8,17 +8,24 @@ class QuestionsSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300,
+      height: 350,
       child: SingleChildScrollView(
         child: Column(
           children: summaryData.map(
             (data) {
               return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    ((data['question_index'] as int) + 1).toString(),
-                    style: const TextStyle(
-                      color: Colors.white,
+                  Container(
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.purple),
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.only(right: 15),
+                    child: Text(
+                      ((data['question_index'] as int) + 1).toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                   ), // The Text widget takes a string, so convert the index to a string.
                   Expanded(
