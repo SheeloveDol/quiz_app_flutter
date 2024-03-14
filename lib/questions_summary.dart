@@ -14,13 +14,25 @@ class QuestionsSummary extends StatelessWidget {
             children: [
               Text(((data['question_index'] as int) + 1)
                   .toString()), // The Text widget takes a string, so convert the index to a string.
-              Column(children: [
-                Text(data['question'] as String),
-                const SizedBox(height: 5),
-                Text('Correct Answer: $data[correct_answer]'),
-                const SizedBox(height: 5),
-                Text('Your Answer: $data[chosen_answer]'),
-              ])
+              Expanded(
+                child: Column(children: [
+                  Text(
+                    data['question'] as String,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    data['correct_answer'] as String,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    data['chosen_answer'] as String,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  const SizedBox(height: 20),
+                ]),
+              )
             ],
           );
         },

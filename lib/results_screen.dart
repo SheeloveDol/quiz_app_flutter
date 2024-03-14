@@ -31,6 +31,13 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // We will calculate the number of correct answers by comparing the chosen answers with the correct answers.
+    final summaryData = getSummaryData();
+    final totalNumberOfQuestions = questions.length;
+    final numberOfCorrectAnswers = summaryData
+        .where((data) => data['correct_answer'] == data['chosen_answer'])
+        .length;
+
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -38,9 +45,13 @@ class ResultsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('You answered X out of Y questions correctly!'),
+            Text(
+              'You answered $numberOfCorrectAnswers out of $totalNumberOfQuestions questions correctly!',
+              style: const TextStyle(color: Colors.white),
+            ),
             const SizedBox(height: 40),
-            QuestionsSummary(getSummaryData()), //getSummaryData() returns a list of maps
+            QuestionsSummary(
+                summaryData), //getSummaryData() returns a list of maps
             const SizedBox(height: 40),
             TextButton(
               onPressed: switchScreen,
