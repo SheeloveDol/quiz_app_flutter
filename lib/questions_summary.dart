@@ -17,8 +17,12 @@ class QuestionsSummary extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.purple),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: data['correct_answer'] == data['chosen_answer']
+                          ? Colors.blue[600]
+                          : Colors.purple,
+                    ),
                     padding: const EdgeInsets.all(10),
                     margin: const EdgeInsets.only(right: 15),
                     child: Text(
