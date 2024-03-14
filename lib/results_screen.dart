@@ -57,9 +57,22 @@ class ResultsScreen extends StatelessWidget {
             QuestionsSummary(
                 summaryData), //getSummaryData() returns a list of maps
             const SizedBox(height: 40),
-            TextButton(
-              onPressed: switchScreen,
-              child: const Text('Try Again'),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.restart_alt_rounded,
+                    color: Color.fromARGB(255, 196, 177, 249)),
+                TextButton(
+                  onPressed: switchScreen,
+                  child: const Text(
+                    'Try Again',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 196, 177, 249),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
