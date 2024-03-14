@@ -32,8 +32,6 @@ class _QuizState extends State<Quiz> {
     if (selectedAnswers.length == questions.length) {
       // make sure we don't go above the number of questions and break the app
       setState(() {
-        selectedAnswers
-            .clear(); // or selectedAnswers = []; but removed `final` from the variable declaration above
         activeScreen = 'results-screen';
       });
     }
@@ -51,9 +49,9 @@ class _QuizState extends State<Quiz> {
       );
     }
 
-      // conditionally rendering the results screen
+    // conditionally rendering the results screen
     if (activeScreen == 'results-screen') {
-      screenWidget =  ResultsScreen(switchScreen, selectedAnswers);
+      screenWidget = ResultsScreen(switchScreen, selectedAnswers);
     }
 
     return MaterialApp(
