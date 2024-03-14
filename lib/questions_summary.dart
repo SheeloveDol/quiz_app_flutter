@@ -17,26 +17,34 @@ class QuestionsSummary extends StatelessWidget {
                 children: [
                   Text(
                     ((data['question_index'] as int) + 1).toString(),
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
                   ), // The Text widget takes a string, so convert the index to a string.
                   Expanded(
-                    child: Column(children: [
-                      Text(
-                        data['question'] as String,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        data['correct_answer'] as String,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        data['chosen_answer'] as String,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      const SizedBox(height: 20),
-                    ]),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          data['question'] as String,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          data['correct_answer'] as String,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          data['chosen_answer'] as String,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        const SizedBox(height: 20),
+                      ],
+                    ),
                   )
                 ],
               );
