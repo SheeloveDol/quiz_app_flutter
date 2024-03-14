@@ -19,9 +19,9 @@ class _QuizState extends State<Quiz> {
   var activeScreen = 'start-screen';
 
   void switchScreen() {
-    setState(
-      () => activeScreen = 'questions-screen',
-    );
+    setState(() {
+      activeScreen = 'questions-screen';
+    });
   }
 
   // Adding a method to add the selected answer to the list
@@ -35,6 +35,15 @@ class _QuizState extends State<Quiz> {
         activeScreen = 'results-screen';
       });
     }
+  }
+
+  void restartQuiz() {
+    setState(
+      () {
+        selectedAnswers.clear();
+        activeScreen = 'questions-screen';
+      },
+    );
   }
 
   @override
@@ -51,7 +60,7 @@ class _QuizState extends State<Quiz> {
 
     // conditionally rendering the results screen
     if (activeScreen == 'results-screen') {
-      screenWidget = ResultsScreen(switchScreen, selectedAnswers);
+      screenWidget = ResultsScreen(switchScreen, selectedAnswers, restartQuiz);
     }
 
     return MaterialApp(

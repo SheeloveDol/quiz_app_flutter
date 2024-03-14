@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/questions.dart';
-import 'package:quiz_app/questions_screen.dart';
 import 'package:quiz_app/questions_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen(this.switchScreen, this.chosenAnswers, {super.key});
+  const ResultsScreen(this.switchScreen, this.chosenAnswers, this.onRestart, {super.key});
 
   final void Function() switchScreen;
   final List<String> chosenAnswers;
+  final void Function() onRestart;
 
   // In order to display the results, we need to compare the chosen answers with the correct answers.
   // but first we need a list of correct answers and a list of chosen answers, and then compare them.
@@ -63,7 +63,7 @@ class ResultsScreen extends StatelessWidget {
                 const Icon(Icons.restart_alt_rounded,
                     color: Color.fromARGB(255, 196, 177, 249)),
                 TextButton(
-                  onPressed: switchScreen,
+                  onPressed: onRestart,
                   child: const Text(
                     'Try Again',
                     style: TextStyle(
