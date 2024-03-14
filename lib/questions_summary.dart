@@ -28,19 +28,21 @@ class QuestionsSummary extends StatelessWidget {
                         Text(
                           data['question'] as String,
                           style: const TextStyle(
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 229, 226, 247),
                             fontSize: 18,
                           ),
                         ),
                         const SizedBox(height: 5),
                         Text(
                           data['correct_answer'] as String,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 242, 152, 250)),
                         ),
                         const SizedBox(height: 5),
                         Text(
                           data['chosen_answer'] as String,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 142, 148, 249)),
                         ),
                         const SizedBox(height: 20),
                       ],
