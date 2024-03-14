@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key});
+  ResultsScreen(this.switchScreen, this.chosenAnswers, {super.key});
+
+  final void Function() switchScreen;
+  List<String> chosenAnswers = [];
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class ResultsScreen extends StatelessWidget {
             const Text('List of questions and answers...'),
             const SizedBox(height: 40),
             TextButton(
-              onPressed: () {},
+              onPressed: switchScreen,
               child: const Text('Try Again'),
             ),
           ],
